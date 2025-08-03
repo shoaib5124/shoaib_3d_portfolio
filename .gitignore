@@ -17,7 +17,6 @@ dist-ssr
 *.map
 *.bin
 *.jpeg
-*.png
 *.mjs
 *.cjs
 *.node

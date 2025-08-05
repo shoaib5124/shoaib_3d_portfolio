@@ -31,7 +31,7 @@ const Computers = ({ isMobile}) => {
     
     <primitive 
       object={computer.scene} 
-      scale={isMobile ? 0.65 : 1}
+      scale={isMobile ? 0.5 : 1}
       position={isMobile ? [2,-3,-0.5] : [2, -1, -1]}
       rotation={[-0.01, -0.19, -0.16]}
     />
@@ -41,15 +41,15 @@ const Computers = ({ isMobile}) => {
 
 const ComputerCanvas = () => {
     const [isMobile, setisMobile] = useState(false);
-    const [cameraX,setcameraX] = usestate(20);
+    const [cameraX,setcameraX] = useState(20);
     useEffect(()=>{
       const mediaQuery = window.matchMedia('(max-width:643px)');
   
       setisMobile(mediaQuery.matches);
-      setcameraX(mediaQuery.matches);
+
       const handlemediaQueryChange = (event)=>{
         setisMobile(event.matches)
-        setcameraX(event.matches ? 30 : 20)
+
       }
   
       mediaQuery.addEventListener('change',
@@ -82,7 +82,7 @@ const ComputerCanvas = () => {
 const Controls = () => {
   return (
     <OrbitControls
-      enableZoom={true}
+      enableZoom={false}
       minDistance={5}
       maxDistance={50}
       enableRotate={true}

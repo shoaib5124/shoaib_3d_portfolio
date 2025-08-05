@@ -3,8 +3,22 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls,Preload, useGLTF } from '@react-three/drei'
 import CanvasLoader from '../Loader'
 
-const Computers = ({ isMobile}) => {
+const Computers = ({ windowWidth}) => {
   const computer = useGLTF("/desktop_pc/scene.gltf")
+
+   const getModelScale = () => {
+    if (windowWidth <= 400) return 0.6;
+    if (windowWidth <= 600) return 0.75;
+    if (windowWidth <= 900) return 0.9;
+    return 1;
+  };
+
+  const getModelPosition = () => {
+    if (windowWidth <= 400) return [2, -3, -0.5];
+    if (windowWidth <= 600) return [2, -2.5, -0.8];
+    if (windowWidth <= 900) return [2, -2, -1];
+    return [2, -1, -1];
+  };
   return (
     <group>
     {/* Hemisphere Light - makes the overall scene brighter */}
@@ -31,8 +45,8 @@ const Computers = ({ isMobile}) => {
     
     <primitive 
       object={computer.scene} 
-      scale={isMobile ? 0.5 : 1}
-      position={isMobile ? [2,-3,-0.5] : [2, -1, -1]}
+      scale={getModelScale}
+      position={getModelPosition}
       rotation={[-0.01, -0.19, -0.16]}
     />
   </group>
@@ -40,31 +54,36 @@ const Computers = ({ isMobile}) => {
 }
 
 const ComputerCanvas = () => {
-    const [isMobile, setisMobile] = useState(false);
-    const [cameraX,setcameraX] = useState(20);
-    useEffect(()=>{
-      const mediaQuery = window.matchMedia('(max-width:643px)');
-  
-      setisMobile(mediaQuery.matches);
 
-      const handlemediaQueryChange = (event)=>{
-        setisMobile(event.matches)
+    const [windowWidth, setwindowwidth] = useState(window.innerWidth);
+   
+    useEffect(()=>{
+      const handleResize =()=>{
+         setwindowwidth(window.innerWidth);
 
       }
-  
-      mediaQuery.addEventListener('change',
-        handlemediaQueryChange);
+    
+      window.addEventListener('Resize',
+        handleResize);
          
       return () =>{
-        mediaQuery.removeEventListener('change',
-          handlemediaQueryChange)
+        window.removeEventListener('resize',
+          handleResize)
       }
     },[])
+
+     const getCameraPosition = () => {
+    if (windowWidth <= 400) return [20, 3, 5];
+    if (windowWidth <= 600) return [25, 3, 5];
+    if (windowWidth <= 900) return [30, 3, 5];
+    return [35, 3, 5];
+  };
+
   return (
     <Canvas
       frameloop="demand"
       camera={{ 
-        position: [cameraX, 0, 5],
+        position: getCameraPosition(),
         fov: 25,
         near: 0.013,
         far: 1000
@@ -73,7 +92,7 @@ const ComputerCanvas = () => {
     >
       <Suspense fallback={<CanvasLoader />}>
         <Controls />
-        <Computers isMobile={isMobile}  />
+        <Computers windowWidth={windowWidth} />
       </Suspense>
     </Canvas>
   )
@@ -93,4 +112,4 @@ const Controls = () => {
   )
 }
 
-export default ComputerCanvas
+export default ComputerCanvas  

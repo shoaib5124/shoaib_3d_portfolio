@@ -41,21 +41,17 @@ const Computers = ({ isMobile}) => {
 
 const ComputerCanvas = () => {
     const [isMobile, setisMobile] = useState(false);
-
-=======
-    const [cameraX,setcameraX] = usestate(20);
->>>>>>> 0ac40526630dc926d02864bc0050cd0b5ec9bc86
+    const [cameraX,setcameraX] = useState(20);
     useEffect(()=>{
       const mediaQuery = window.matchMedia('(max-width:643px)');
   
       setisMobile(mediaQuery.matches);
-      setcameraX(mediaQuery.matches);
+      setcameraX(mediaQuery.matches ? 30 : 20)
+      
       const handlemediaQueryChange = (event)=>{
         setisMobile(event.matches)
-
-=======
         setcameraX(event.matches ? 30 : 20)
->>>>>>> 0ac40526630dc926d02864bc0050cd0b5ec9bc86
+
       }
 
       mediaQuery.addEventListener('change',
@@ -70,11 +66,7 @@ const ComputerCanvas = () => {
     <Canvas
       frameloop="demand"
       camera={{ 
-<<<<<<< HEAD
         position: [cameraX, 3, 5],
-=======
-        position: [cameraX, 0, 5],
->>>>>>> 0ac40526630dc926d02864bc0050cd0b5ec9bc86
         fov: 25,
         near: 0.013,
         far: 1000

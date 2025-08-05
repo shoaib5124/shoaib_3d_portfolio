@@ -41,6 +41,7 @@ const Computers = ({ isMobile}) => {
 
 const ComputerCanvas = () => {
     const [isMobile, setisMobile] = useState(false);
+
     useEffect(()=>{
       const mediaQuery = window.matchMedia('(max-width:643px)');
   
@@ -48,8 +49,9 @@ const ComputerCanvas = () => {
       
       const handlemediaQueryChange = (event)=>{
         setisMobile(event.matches)
+
       }
-  
+
       mediaQuery.addEventListener('change',
         handlemediaQueryChange);
          
@@ -62,7 +64,7 @@ const ComputerCanvas = () => {
     <Canvas
       frameloop="demand"
       camera={{ 
-        position: [30, 0, 5],
+        position: [cameraX, 3, 5],
         fov: 25,
         near: 0.013,
         far: 1000
@@ -80,7 +82,7 @@ const ComputerCanvas = () => {
 const Controls = () => {
   return (
     <OrbitControls
-      enableZoom={true}
+      enableZoom={false}
       minDistance={5}
       maxDistance={50}
       enableRotate={true}
@@ -91,4 +93,4 @@ const Controls = () => {
   )
 }
 
-export default ComputerCanvas
+export default ComputerCanvas  

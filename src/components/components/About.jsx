@@ -9,7 +9,7 @@ import { SectionWraper } from '../../hoc';
 
 const ServiceCard = ({index, title,icon})=>{
   return(
-    <Tilt className="sm:w-[280px] w-[80%] lg:w-1/5 ">
+    <Tilt className="sm:w-[280px] w-[100%] lg:w-1/5 ">
       <motion.div
       variants={fadeIn("up","tween",0.5*
         index, 0.75)}
@@ -40,7 +40,7 @@ const ServiceCard = ({index, title,icon})=>{
 const About = () => {
   return (
     <>
-    <section className='sm:max-w-7xl mx-auto px-4'>
+    <section className='sm:max-w-7xl mx-auto px-4 '>
     <motion.div variants={textVariant()}>
       <p className ={styles.sectionSubText}>Intoduction</p>
       <h2 className ={styles.sectionHeadText}>Overview</h2>
@@ -58,7 +58,7 @@ const About = () => {
      and user        friendly solutions that solve real world
      problems.Let's work together to bring your ideas to life!
     </motion.p>
-    <div className='mt-20 flex flex-wrap sm:gap-5 gap-10 mx-auto'>
+    <div className='mt-20 flex flex-wrap sm:gap-5 gap-10 mx-auto justify-center'>
       {services.map((service,index)=>(
         <ServiceCard key={service.title} index=
         {index} {...service}/>

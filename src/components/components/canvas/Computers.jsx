@@ -9,8 +9,8 @@ const Computers = ({ windowWidth}) => {
    const getModelScale = () => {
     if (windowWidth <= 400) return 0.6;
     if (windowWidth <= 600) return 0.75;
-    if (windowWidth <= 900) return 0.9;
-    return 1;
+    if (windowWidth <= 900) return 1.1
+    return 1.4
   };
 
   const getModelPosition = () => {
@@ -31,7 +31,7 @@ const Computers = ({ windowWidth}) => {
     {/* Your existing lights */}
     <directionalLight
       position={[5, 40, 7]}
-      intensity={2}
+      intensity={8}
       castShadow
     />
     <spotLight
@@ -45,9 +45,9 @@ const Computers = ({ windowWidth}) => {
     
     <primitive 
       object={computer.scene} 
-      scale={getModelScale}
-      position={getModelPosition}
-      rotation={[-0.01, -0.19, -0.16]}
+      scale={getModelScale()}
+      position={getModelPosition()}
+      rotation={[-0.01, -0.01, -0.16]}
     />
   </group>
   )
@@ -63,7 +63,7 @@ const ComputerCanvas = () => {
 
       }
     
-      window.addEventListener('Resize',
+      window.addEventListener('resize',
         handleResize);
          
       return () =>{

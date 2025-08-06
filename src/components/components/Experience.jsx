@@ -1,16 +1,16 @@
 import React from 'react'
-import {verticalTimeline,
-verticalTimelineElement} from 'react-vertical-timeline-component';
+import {VerticalTimeline,
+VerticalTimelineElement} from 'react-vertical-timeline-component';
 import {motion} from 'framer-motion';
 import 'react-vertical-timeline-component/style.min.css';
 import {styles} from '@/style';
 import {experiences} from '@/constants';
 import {SectionWraper} from '../../hoc';
 import {textVariant} from '@/utlis/motion';
-import Background from 'three/src/renderers/common/Background.js';
+// import Background from 'three/src/renderers/common/Background.js';
 
 const ExperienceCard = ({experience}) =>(
-  <verticalTimelineElement
+  <VerticalTimelineElement
   contentStyle={{Background:'#1d1836',color:
   '#fff'}}
   // contentArrayStyle={{borderRight:'7px solid
@@ -18,7 +18,7 @@ const ExperienceCard = ({experience}) =>(
   // date={{}}
   >
     
-  </verticalTimelineElement>
+  </VerticalTimelineElement>
 )
 const Experience = () => {
   return (
@@ -30,12 +30,12 @@ const Experience = () => {
           Work Experience</h2>
       </motion.div>
       <div className='mt-2 flex flex-col'>
-        <verticalTimeline>
+        <VerticalTimeline>
           {experiences.map((experience,index)=>(
-            <Experience key={index} experience=
+            <ExperienceCard key={index} experience=
             {experience}/>
           ))}
-        </verticalTimeline>
+        </VerticalTimeline>
       </div>
     </>
   )

@@ -9,8 +9,8 @@ const Computers = ({ windowWidth}) => {
    const getModelScale = () => {
     if (windowWidth <= 400) return 0.6;
     if (windowWidth <= 600) return 0.75;
-    if (windowWidth <= 900) return 0.97;
-    return 1.03
+    if (windowWidth <= 900) return 0.9;
+    return 1
   };
 
   const getModelPosition = () => {
@@ -81,7 +81,6 @@ const ComputerCanvas = () => {
 
   return (
     <Canvas
-   
       frameloop="demand"
       camera={{ 
         position: getCameraPosition(),

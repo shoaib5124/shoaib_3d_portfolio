@@ -14,7 +14,7 @@ const Computers = ({ windowWidth}) => {
   };
 
   const getModelPosition = () => {
-    if (windowWidth <= 400) return [2, -3, -0.5];
+    if (windowWidth <= 400) return [3, -3, -0.5];
     if (windowWidth <= 600) return [2, -2.5, -0.8];
     if (windowWidth <= 900) return [2, -2, -1];
     return [2, -1, -1];
@@ -35,10 +35,10 @@ const Computers = ({ windowWidth}) => {
       castShadow
     />
     <spotLight
-      position={[10, 15, 10]}
+      position={[5, 10, 7]}
       angle={0.3}
-      penumbra={1}
-      intensity={50}
+      penumbra={0.5}
+      intensity={3}
       castShadow
       shadow-mapSize={[1024, 1024]}
     />
@@ -81,6 +81,7 @@ const ComputerCanvas = () => {
 
   return (
     <Canvas
+      className='bg-[#0a0a0a]'
       frameloop="demand"
       camera={{ 
         position: getCameraPosition(),

@@ -1,26 +1,30 @@
-import React, { Suspense, useState, useEffect } from 'react'
+import React, { Suspense, useState, useEffect,useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls,Preload, useGLTF } from '@react-three/drei'
 import CanvasLoader from '../Loader'
 
 const Computers = ({ windowWidth}) => {
   const computer = useGLTF("/desktop_pc/scene.gltf")
-
+  const modelRef = useRef();
    const getModelScale = () => {
-    if (windowWidth <= 400) return 0.6;
-    if (windowWidth <= 600) return 0.75;
-    if (windowWidth <= 900) return 0.9;
-    return 1
+    if (windowWidth <= 400) return 0.2;
+    if (windowWidth <= 600) return 0.25;
+    if (windowWidth <= 900) return 0.45;
+    return 0.5
   };
 
   const getModelPosition = () => {
-    if (windowWidth <= 400) return [3, -3, -0.5];
-    if (windowWidth <= 600) return [2, -2.5, -0.8];
-    if (windowWidth <= 900) return [2, -2, -1];
-    return [2, -1, -1];
+    if (windowWidth <= 400) return [0.2, -0.5, -0.5];
+    if (windowWidth <= 600) return [0.2, -0.5, -0.3];
+    if (windowWidth <= 900) return [0.5, -0.1, -0.1];
+    return [1, 1.8, -0.2];
   };
   return (
-    <group>
+    <group ref={modelRef}
+     scale={getModelScale()}
+     position={getModelPosition()}
+     rotation={[-0.001, -0.08, -0.22]}
+    >
     {/* Hemisphere Light - makes the overall scene brighter */}
     <hemisphereLight 
       intensity={1}  // Adjust brightness (0.5 to 2 is usually good)
@@ -45,9 +49,6 @@ const Computers = ({ windowWidth}) => {
     
     <primitive 
       object={computer.scene} 
-      scale={getModelScale()}
-      position={getModelPosition()}
-      rotation={[-0.01, -0.01, -0.16]}
     />
   </group>
   )
@@ -82,8 +83,8 @@ const ComputerCanvas = () => {
   };
 
   return (
-    // <div className='w-full h-[100vh]
-    // max-w-full overflow-hidden '>
+    <div className='w-full h-[100vh]
+     max-w-full overflow-hidden '>
       <Canvas
         frameloop="demand"
         camera={{ 
@@ -99,7 +100,7 @@ const ComputerCanvas = () => {
           <Computers windowWidth={windowWidth} />
         </Suspense>
       </Canvas>
-    // </div>
+     </div>
   )
 }
 
@@ -107,6 +108,7 @@ const Controls = () => {
   return (
     <OrbitControls
       enableZoom={false}
+      target={[0,0,0]}
       minDistance={5}
       maxDistance={50}
       enableRotate={true}

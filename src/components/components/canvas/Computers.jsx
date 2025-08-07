@@ -9,8 +9,8 @@ const Computers = ({ windowWidth}) => {
    const getModelScale = () => {
     if (windowWidth <= 400) return 0.6;
     if (windowWidth <= 600) return 0.75;
-    if (windowWidth <= 900) return 1.1
-    return 1.4
+    if (windowWidth <= 900) return 0.97;
+    return 1.03
   };
 
   const getModelPosition = () => {

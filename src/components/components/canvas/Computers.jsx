@@ -81,7 +81,7 @@ const ComputerCanvas = () => {
 
   return (
     <Canvas
-      className='bg-[#0a0a0a]'
+   
       frameloop="demand"
       camera={{ 
         position: getCameraPosition(),

@@ -80,21 +80,23 @@ const ComputerCanvas = () => {
   };
 
   return (
-    <Canvas
-      frameloop="demand"
-      camera={{ 
-        position: getCameraPosition(),
-        fov: 25,
-        near: 0.013,
-        far: 1000
-      }}
-      gl={{ preserveDrawingBuffer: true }}
-    >
-      <Suspense fallback={<CanvasLoader />}>
-        <Controls />
-        <Computers windowWidth={windowWidth} />
-      </Suspense>
-    </Canvas>
+    <div className='w-full h-screen '>
+      <Canvas
+        frameloop="demand"
+        camera={{ 
+          position: getCameraPosition(),
+          fov: 25,
+          near: 0.013,
+          far: 1000
+        }}
+        gl={{ preserveDrawingBuffer: true }}
+      >
+        <Suspense fallback={<CanvasLoader />}>
+          <Controls />
+          <Computers windowWidth={windowWidth} />
+        </Suspense>
+      </Canvas>
+    </div>
   )
 }
 

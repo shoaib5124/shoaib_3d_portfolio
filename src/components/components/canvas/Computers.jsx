@@ -7,8 +7,8 @@ const Computers = ({ windowWidth}) => {
   const computer = useGLTF("/desktop_pc/scene.gltf")
 
    const getModelScale = () => {
-    if (windowWidth <= 400) return 0.6;
-    if (windowWidth <= 600) return 0.75;
+    if (windowWidth <= 400) return 0.4;
+    if (windowWidth <= 600) return 0.6;
     if (windowWidth <= 900) return 0.9;
     return 1
   };
@@ -68,6 +68,8 @@ const ComputerCanvas = () => {
          
       return () =>{
         window.removeEventListener('resize',
+            
+          
           handleResize)
       }
     },[])

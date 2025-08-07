@@ -80,8 +80,8 @@ const ComputerCanvas = () => {
   };
 
   return (
-    <div className='w-full h-[100vh]
-    max-w-full overflow-hidden '>
+    // <div className='w-full h-[100vh]
+    // max-w-full overflow-hidden '>
       <Canvas
         frameloop="demand"
         camera={{ 
@@ -97,7 +97,7 @@ const ComputerCanvas = () => {
           <Computers windowWidth={windowWidth} />
         </Suspense>
       </Canvas>
-    </div>
+    // </div>
   )
 }
 
